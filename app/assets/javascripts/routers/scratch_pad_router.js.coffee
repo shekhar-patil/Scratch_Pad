@@ -4,7 +4,9 @@ class App.Routers.ScratchPadRouter extends Backbone.Router
     'notes/:id' : 'showNote'
 
   showNote: (id) ->
-    alert("requesting for the note with id #{id}")
+    model = App.AllNotes[id - 1]
+    view = new App.Views.EditNote(model: model)
+    $('#container').html(view.render().el)
 
   index: ->
     view = new App.Views.Notes(collection: App.AllNotes)
